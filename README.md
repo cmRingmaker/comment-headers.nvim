@@ -2,6 +2,8 @@
 
 Automatic file header management for Neovim. Inserts and maintains metadata headers in your source files.
 
+![Demo of comment-headers.nvim auto and manual inserting headers](assets/comment-headers.gif)
+
 ## Features
 
 - **Auto-insert headers** on new files
@@ -14,7 +16,7 @@ Automatic file header management for Neovim. Inserts and maintains metadata head
 
 ## Installation
 
-### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
+### Using [lazy.nvim](https://github.com/folke/lazy.nvim) with `opts` (Recommended)
 
 ```lua
 {
@@ -29,6 +31,16 @@ Automatic file header management for Neovim. Inserts and maintains metadata head
 }
 ```
 
+### Manual setup (if not using lazy.nvim)
+
+```lua
+require("comment-headers").setup({
+  author = "Your Name",
+  license = "MIT",
+  -- See configuration section for more options
+})
+```
+
 ---
 
 ## Configuration
@@ -36,7 +48,7 @@ Automatic file header management for Neovim. Inserts and maintains metadata head
 ### Default Configuration
 
 ```lua
-require("comment-headers").setup({
+}
   author = "Author",
   license = "MIT",
   date_format = "%y/%m/%d",  -- Style you want your date to appear as
@@ -88,7 +100,7 @@ require("comment-headers").setup({
     ".git",
     "build",
   },
-})
+}
 ```
 
 ### Date Format
@@ -167,7 +179,7 @@ mount_paths = {
 ## Example Customization for Config
 
 ```lua
-require("comment-headers").setup({
+{
   author = "John Doe",
   license = "Apache License 2.0",
   date_format = "%d.%m.%Y",  -- 02.12.2025
@@ -183,7 +195,7 @@ require("comment-headers").setup({
   comment_styles = {
     ["//"] = { "javascript", "typescript", "mycoollang" },
   },
-})
+}
 ```
 
 ---
