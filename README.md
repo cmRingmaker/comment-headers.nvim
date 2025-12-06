@@ -2,7 +2,7 @@
 
 Automatic file header management for Neovim. Inserts and maintains metadata headers in your source files.
 
-![Demo of comment-headers.nvim auto and manual inserting headers](assets/comment-headers.gif)
+![Demo of comment-headers.nvim auto and manual inserting headers](assets/header-comments.gif)
 
 ## Features
 
