@@ -14,13 +14,13 @@
 
 local M = {}
 
-local config_module = require(".config")
-local path_utils = require(".utils.path")
-local lookup_utils = require(".utils.lookup")
-local template_utils = require(".core.template")
-local insert_module = require(".core.insert")
-local update_module = require(".core.update")
-local api = require(".api")
+local config_module = require("comment-headers.config")
+local path_utils = require("comment-headers.utils.path")
+local lookup_utils = require("comment-headers.utils.lookup")
+local template_utils = require("comment-headers.core.template")
+local insert_module = require("comment-headers.core.insert")
+local update_module = require("comment-headers.core.update")
+local api = require("comment-headers.api")
 
 local commands_created = false
 

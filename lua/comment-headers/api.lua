@@ -17,13 +17,13 @@
 local M = {}
 
 -- Load all required modules
-local config_module = require(".config")
-local path_utils = require(".utils.path")
-local lookup_utils = require(".utils.lookup")
-local template_utils = require(".core.template")
-local insert_module = require(".core.insert")
-local update_module = require(".core.update")
-local remove_module = require(".core.remove")
+local config_module = require("comment-headers.config")
+local path_utils = require("comment-headers.utils.path")
+local lookup_utils = require("comment-headers.utils.lookup")
+local template_utils = require("comment-headers.core.template")
+local insert_module = require("comment-headers.core.insert")
+local update_module = require("comment-headers.core.update")
+local remove_module = require("comment-headers.core.remove")
 
 -- Manually insert header in current buffer
 -- Usage: :lua require('comment-headers').insert_header()
