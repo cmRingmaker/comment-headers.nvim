@@ -1,186 +1,184 @@
-*comment-headers.nvim.txt*      Automatic file header management for Neovim
+*comment-headers.nvim.txt*      Automatic file header management for Neovim
 
 ==============================================================================
-NAME                                                            *comment-headers.nvim*
+NAME                                                            *comment-headers.nvim*
 
 comment-headers.nvim — automatic insertion and maintenance of
 metadata headers in source files.
 
 ==============================================================================
-INSTALLATION                                             *comment-headers.nvim-install*
+INSTALLATION                                             *comment-headers.nvim-install*
 
 Example using lazy.nvim:
 
 >lua
-    {
-      "ringmaker/comment-headers.nvim",
-      lazy = false,
-      config = function()
-        require("comment-headers").setup({
-          author = "Your Name",
-          license = "MIT",
-        })
-      end,
-    }
+    {
+      "cmRingmaker/comment-headers.nvim",
+      lazy = false,
+      opts = {
+        author = "Your Name",
+        license = "MIT",
+        -- All configuration goes inside this 'opts' table
+      }
+    }
 
 ==============================================================================
-CONFIGURATION                                          *comment-headers.nvim-config*
+CONFIGURATION                                          *comment-headers.nvim-config*
 
 Default configuration:
 
 >lua
-    require("comment-headers").setup({
-      author = "Author",
-      license = "MIT",
-      date_format = "%y/%m/%d",
-      scan_lines = 15,
-      auto_insert = true,
+    {
+      author = "Author",
+      license = "MIT",
+      date_format = "%y/%m/%d",
+      scan_lines = 15,
+      auto_insert = true,
 
-      fields = {
-        file = true,
-        date = true,
-        updated = true,
-        version = true,
-        author = true,
-        license = true,
-      },
+      fields = {
+        file = true,
+        date = true,
+        updated = true,
+        version = true,
+        author = true,
+        license = true,
+      },
 
-      purpose_label = "Purpose:",
-      note_label = "Note:",
-      mount_paths = {},
+      purpose_label = "Purpose:",
+      note_label = "Note:",
+      mount_paths = {},
 
-      comment_styles = {
-        ["//"] = { "javascript", "typescript", "c", "cpp", "rust", "go", "java" },
-        ["--"] = { "lua", "sql", "haskell" },
-        ["#"]  = {
-            "python", "sh", "bash", "yaml", "toml",
-            "ruby", "perl"
-        },
-      },
+      comment_styles = {
+        ["//"] = { "javascript", "typescript", "c", "cpp", "rust", "go", "java" },
+        ["--"] = { "lua", "sql", "haskell" },
+        ["#"]  = {
+            "python", "sh", "bash", "yaml", "toml",
+            "ruby", "perl"
+        },
+      },
 
-      skip_directories = {
-        "node_modules",
-        "vendor",
-        ".git",
-        "build",
-      },
-    })
-
+      skip_directories = {
+        "node_modules",
+        "vendor",
+        ".git",
+        "build",
+      },
+    }
 ------------------------------------------------------------------------------
 Date Format Notes:
 
 `date_format` uses Lua’s os.date() formatting (`strftime`-like).
 
 Common examples:
-    "%Y-%m-%d"   → 2025-12-02
-    "%y/%m/%d"   → 25/12/02
-    "%B %d, %Y"  → December 02, 2025
+    "%Y-%m-%d"   → 2025-12-02
+    "%y/%m/%d"   → 25/12/02
+    "%B %d, %Y"  → December 02, 2025
 
 ==============================================================================
-USAGE                                                     *comment-headers.nvim-usage*
+USAGE                                                     *comment-headers.nvim-usage*
 
 Automatic behavior:
-    • headers inserted on new files
-    • fields updated on save
+    • headers inserted on new files
+    • fields updated on save
 
 Manual commands:
 
-    :CommentHeaderInsert
-    :CommentHeaderUpdate
-    :CommentHeaderRemove
+    :CommentHeaderInsert
+    :CommentHeaderUpdate
+    :CommentHeaderRemove
 
 Lua API:
 
 >lua
-    require("comment-headers").insert_header()
-    require("comment-headers").update_headers()
-    require("comment-headers").remove_header()
+    require("comment-headers").insert_header()
+    require("comment-headers").update_headers()
+    require("comment-headers").remove_header()
 
 Example keymaps:
 
 >lua
-    vim.keymap.set("n", "<leader>hi",
-      function() require("comment-headers").insert_header() end)
+    vim.keymap.set("n", "<leader>hi",
+      function() require("comment-headers").insert_header() end)
 
 ==============================================================================
-EXAMPLE OUTPUT                                     *comment-headers.nvim-example*
+EXAMPLE OUTPUT                                     *comment-headers.nvim-example*
 
 >lua
-    -- ======================================================================
-    -- $File      : ~/.config/nvim/init.lua
-    -- $Date      : 25/12/02
-    -- $Updated   : 25/12/02
-    -- $Version   : 1.0.0
-    -- $Author    : John Doe
-    -- $License   : MIT
-    -- ======================================================================
-    -- Purpose:
-    --   Main Neovim configuration entry point
-    -- ======================================================================
-    -- Note:
-    --   Configuration is split across multiple files
-    -- ======================================================================
+    -- ======================================================================
+    -- $File      : ~/.config/nvim/init.lua
+    -- $Date      : 25/12/02
+    -- $Updated   : 25/12/02
+    -- $Version   : 1.0.0
+    -- $Author    : John Doe
+    -- $License   : MIT
+    -- ======================================================================
+    -- Purpose:
+    --   Main Neovim configuration entry point
+    -- ======================================================================
+    -- Note:
+    --   Configuration is split across multiple files
+    -- ======================================================================
 
 ==============================================================================
-SUPPORTED LANGUAGES                                *comment-headers.nvim-languages*
+SUPPORTED LANGUAGES                                *comment-headers.nvim-languages*
 
 Built-in support:
 
-    C, C++, C#, Rust, Go, Java, Swift, Zig
-    JavaScript, TypeScript
-    Python, Ruby, Perl
-    Lua, SQL, Haskell
-    Bash, Zsh, Fish
-    YAML, TOML
+    C, C++, C#, Rust, Go, Java, Swift, Zig
+    JavaScript, TypeScript
+    Python, Ruby, Perl
+    Lua, SQL, Haskell
+    Bash, Zsh, Fish
+    YAML, TOML
 
 Additional languages can be added via |comment-headers.nvim-config|
 (using the `comment_styles` option).
 
 ==============================================================================
-FAQ                                                        *comment-headers.nvim-faq*
+FAQ                                                        *comment-headers.nvim-faq*
 
 Fields that update automatically:
 
-    $File     — when file moves or is renamed
-    $Date     — first-save only
-    $Updated  — every save when modified
+    $File     — when file moves or is renamed
+    $Date     — first-save only
+    $Updated  — every save when modified
 
 Fields that do NOT auto-update:
 
-    $Author, $Version, $License
+    $Author, $Version, $License
 
 Why use this plugin?
 
-    Consistent file headers, automatic maintenance,
-    clear purpose/notes sections, and version/date tracking.
+    Consistent file headers, automatic maintenance,
+    clear purpose/notes sections, and version/date tracking.
 
 ==============================================================================
-BATCH OPERATIONS                                    *comment-headers.nvim-batch*
+BATCH OPERATIONS                                    *comment-headers.nvim-batch*
 
 Run operations across multiple files.
 
 Examples:
 
-    :args *.lua
-    :argdo :CommentHeaderInsert
+    :args *.lua
+    :argdo :CommentHeaderInsert
 
 Recursive:
 
-    :args **/*.lua
-    :argdo :CommentHeaderInsert
+    :args **/*.lua
+    :argdo :CommentHeaderInsert
 
 Multiple types:
 
-    :args **/*.{lua,py,js}
-    :argdo :CommentHeaderInsert
+    :args **/*.{lua,py,js}
+    :argdo :CommentHeaderInsert
 
 Show active file list:
 
-    :args
+    :args
 
 Save all:
 
-    :argdo w
+    :argdo w
 
 ==============================================================================
 END OF DOCUMENT

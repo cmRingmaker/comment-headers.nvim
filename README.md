@@ -18,15 +18,14 @@ Automatic file header management for Neovim. Inserts and maintains metadata head
 
 ```lua
 {
-  "ringmaker/comment-headers.nvim",
+  "cmRingmaker/comment-headers.nvim",
   lazy = false,  -- Load immediately for auto-insert
-  config = function()
-    require("comment-headers").setup({
-      author = "Your Name",
-      license = "MIT",
-      -- See configuration section for more options
-    })
-  end,
+  opts = {
+    author = "Your Name",
+    license = "MIT",
+    -- All configuration goes inside this 'opts' table
+    -- See configuration section for more options
+  },
 }
 ```
 
